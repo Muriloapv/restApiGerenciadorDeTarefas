@@ -9,7 +9,14 @@ app.use( '/api', tarefaRoutes );
 app.use( '/api', userRoutes   );
 
 app.listen( PORT, () => {
-    console.log( `Servidor on-line na porta: ${PORT}` )
-    console.log(`URL: http://localhost:${PORT}/api/tarefas`);
+    console.log( '|------------------------------------------------| '  );
+    console.log( `|------- Servidor on-line na porta: ${PORT} --------|`);
+    console.log( '|--------- Gerenciador de tarefas ---------------| '  );
+    console.log( `| URL: http://localhost:${PORT}/api/tarefas         |`);
+    console.log( '|------------------------------------------------| '  );
+    console.log( '|--------- Gerenciador de usuarios---------------| '  );
+    console.log( `| URL: http://localhost:${PORT}/api/user            |`);
+    console.log( '|------------------------------------------------| '  ) ;
+    
 });
 

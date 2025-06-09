@@ -1,6 +1,6 @@
-const express = requrie ( 'express' );
+const express = require ( 'express' );
 const router = express.Router();
-const userController = require( '../controllers/userController' );
+const userController = require ( '../controllers/userController' );
 
 //Rotas para operações CRUD
 router.get    ( '/user'    , userController.listarUsuarios   );

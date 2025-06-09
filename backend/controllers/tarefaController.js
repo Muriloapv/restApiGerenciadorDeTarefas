@@ -5,6 +5,17 @@
         res.json( tarefas );
     };
 
+    const listarTarefasUser = ( req, res ) => {
+        const nome = req.params;
+
+        const tarefasUser = tarefas.filter( tarefa => tarefa.usuario === nome);
+        if ( tarefasUser.length > 0 ) {
+            res.json( tarefasUser )
+        } else {
+           res.status( 400 ).json( { mensagem: 'Não a tarefas no nome desse usúario!' } ) 
+        }
+    }
+
     //Cria nova tarefa - POST
     const criarTarefa = ( req, res ) => {
         const { titulo    } = req.body;
@@ -57,4 +68,4 @@
         }
     };
 
-module.exports = { listarTarefas, criarTarefa, atualizarTarefa, excluirTarefa }
+module.exports = { listarTarefas, listarTarefasUser, criarTarefa, atualizarTarefa, excluirTarefa }
