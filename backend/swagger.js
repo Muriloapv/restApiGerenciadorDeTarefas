@@ -12,4 +12,4 @@ const doc = {
 const outputFile     = './swagger_output.json';
 const endpointsFiles = ['./app.js']; // ou ./routes/tarefaRoutes.js etc
 
-swaggerAutogen(outputFile, endpointsFiles, doc);
+swaggerAutogen( outputFile, endpointsFiles, doc );

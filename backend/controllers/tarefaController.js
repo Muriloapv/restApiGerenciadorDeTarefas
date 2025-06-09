@@ -56,6 +56,22 @@
         }
     };
 
+    // Atualizar status da tarefa - PATCH
+    const atualizarStatusTarefa = ( req, res ) => {
+        const { id     } = req.params;
+        const { status } = req.body;
+
+        const index = tarefas.findIndex( tarefa => tarefa.id === parseInt( id ) );
+
+        if ( index !== -1 ){
+            tarefas[ index ].status = status;
+            
+            res.json( tarefas[ index ] );
+        } else {
+            res.status( 400 ).json( { mensagem: 'Tarefa não encontrada!' } );// retorna erro 404 caso a tarefa não seja encontrada
+        }
+    };
+
     //Excluir tarefa - DELETE
     const excluirTarefa = ( req, res ) => {
         const { id } = req.params;
@@ -69,4 +85,4 @@
         }
     };
 
-module.exports = { listarTarefas, listarTarefasUser, criarTarefa, atualizarTarefa, excluirTarefa }
+module.exports = { listarTarefas, listarTarefasUser, criarTarefa, atualizarTarefa, atualizarStatusTarefa, excluirTarefa }
