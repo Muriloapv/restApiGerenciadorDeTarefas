@@ -45,9 +45,10 @@
         const index = tarefas.findIndex( tarefa => tarefa.id === parseInt( id ) );
 
         if ( index !== -1 ){
-            tarefas[ index  ].titulo    = titulo;
-            tarefas[ index  ].descricao = descricao;
-            tarefas[ status ].status    = status;
+            tarefas[ index ].titulo    = titulo;
+            tarefas[ index ].descricao = descricao;
+            tarefas[ index ].status    = status;
+            tarefas[ index ].usuario   = usuario;
 
             res.json( tarefas[ index ] );
         } else {
