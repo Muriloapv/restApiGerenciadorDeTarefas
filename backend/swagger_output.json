@@ -185,9 +185,6 @@
               "properties": {
                 "nome": {
                   "example": "any"
-                },
-                "cargo": {
-                  "example": "any"
                 }
               }
             }
@@ -217,9 +214,6 @@
               "type": "object",
               "properties": {
                 "nome": {
-                  "example": "any"
-                },
-                "cargo": {
                   "example": "any"
                 }
               }
