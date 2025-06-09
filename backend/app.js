@@ -5,30 +5,11 @@ const userRoutes   = require('./routes/userRoutes');
 const PORT         = process.env.PORT || 3000;
 
 const swaggerUi    = require('swagger-ui-express');
-const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerFile  = require('./swagger_output.json'); // o arquivo gerado
 
-const swaggerOptions = {
-  definition: {
-    openapi: '3.0.0',
-    info: {
-      title: 'Tarefas',
-      version: '1.0.0',
-      description: 'API documentation',
-    },
-    servers: [
-      {
-        url: 'http://localhost:3000',
-      },
-    ],
-  },
-  apis: ['./routes/*.js'], // Procura anotações swagger aqui
-};
-
-const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 app.use(express.json()); 
-
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use('/api', tarefaRoutes);
 app.use('/api', userRoutes);
 
