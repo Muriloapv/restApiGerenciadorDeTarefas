@@ -1,9 +1,10 @@
-    let tarefas = [];
+const TarefaModel = require( '../models/tarefaModel' )
 
     //Lista todas as tarefas - GET
     const listarTarefas = ( req, res ) => {
-        res.json( tarefas );
+        res.json( TarefaModel.getAll() )
     };
+
     //Listar todas as tarefas de um usuario - GET
     const listarTarefasUser = ( req, res ) => {
         const nome = req.params;
@@ -18,41 +19,25 @@
 
     //Cria nova tarefa - POST
     const criarTarefa = ( req, res ) => {
-        const { titulo    } = req.body;
-        const { descricao } = req.body;
-        const { status    } = req.body;
-        const { usuario   } = req.body;
+        const { titulo, descricao, status, usuario } = req.body;
 
-        const novaTarefa ={ id: tarefas.length + 1, 
-                            titulo,
-                            descricao,
-                            status,
-                            usuario
-        }; 
-
-        tarefas.push( novaTarefa );
+        const novaTarefa = TarefaModel.create ({ titulo, descricao, status, usuario });
         res.status( 201 ).json( novaTarefa );
     };
+    module.exports = ( criarTarefa );
 
     //Atualizar dados da tarefa - PUT
     const atualizarTarefa = ( req, res ) => {
-        const { id        } = req.params;
-        const { titulo    } = req.body; 
-        const { descricao } = req.body;
-        const { status    } = req.body;
-        const { usuario   } = req.body;
-
-        const index = tarefas.findIndex( tarefa => tarefa.id === parseInt( id ) );
+        const { id } = req.params;
+        const { titulo, descricao, status, usuario } = req.body;
+       
+        const index = TarefaModel.firstRecordOfList(  );       
 
         if ( index !== -1 ){
-            tarefas[ index ].titulo    = titulo;
-            tarefas[ index ].descricao = descricao;
-            tarefas[ index ].status    = status;
-            tarefas[ index ].usuario   = usuario;
-
+            TarefaModel.putAtualizarTarefa( id, { titulo, descricao, status, usuario } )
             res.json( tarefas[ index ] );
         } else {
-            res.status( 400 ).json( { mensagem: 'Tarefa não encontrada!' } );// retorna erro 404 caso a tarefa não seja encontrada
+            res.status( 400 ).json( { mensagem: 'Tarefa não encontrada!' } );
         }
     };
 
