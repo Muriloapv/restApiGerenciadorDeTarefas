@@ -4,6 +4,8 @@ const tarefaModel = require('../models/tarefaModel');
 const listarTarefas = (req, res) => {
     const tarefas = tarefaModel.getAllTarefas();
     res.json(tarefas);
+    // #swagger.tags = ['Tarefas']
+
 };
 
 // GET /tarefas/:usuario
@@ -16,6 +18,8 @@ const listarTarefasUser = (req, res) => {
     } else {
         res.status(400).json({ mensagem: 'Não há tarefas com esse nome de usuário!' });
     }
+// #swagger.tags = ['Tarefas']
+
 };
 
 // POST /tarefas
@@ -23,6 +27,7 @@ const criarTarefa = (req, res) => {
     const { titulo, descricao, status, usuario } = req.body;
     const novaTarefa = tarefaModel.addTarefa({ titulo, descricao, status, usuario });
     res.status(201).json(novaTarefa);
+// #swagger.tags = ['Tarefas']
 };
 
 // PUT /tarefas/:id
@@ -37,6 +42,7 @@ const atualizarTarefa = (req, res) => {
     } else {
         res.status(400).json({ mensagem: 'Tarefa não encontrada!' });
     }
+// #swagger.tags = ['Tarefas']
 };
 
 // DELETE /tarefas/:id
@@ -48,12 +54,7 @@ const excluirTarefa = (req, res) => {
     } else {
         res.status(404).json({ mensagem: 'Tarefa não encontrada' });
     }
+// #swagger.tags = ['Tarefas']
 };
 
-module.exports = {
-    listarTarefas,
-    listarTarefasUser,
-    criarTarefa,
-    atualizarTarefa,
-    excluirTarefa
-};
+module.exports = { listarTarefas, listarTarefasUser, criarTarefa, atualizarTarefa, excluirTarefa};

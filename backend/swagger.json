@@ -13,6 +13,9 @@
   "paths": {
     "/api/tarefas": {
       "get": {
+        "tags": [
+          "Tarefas"
+        ],
         "description": "",
         "parameters": [
           {
@@ -34,6 +37,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Tarefas"
+        ],
         "description": "",
         "parameters": [
           {
@@ -78,6 +84,9 @@
     },
     "/api/tarefas/{usuario}": {
       "get": {
+        "tags": [
+          "Tarefas"
+        ],
         "description": "",
         "parameters": [
           {
@@ -110,6 +119,9 @@
     },
     "/api/tarefas/{id}": {
       "put": {
+        "tags": [
+          "Tarefas"
+        ],
         "description": "",
         "parameters": [
           {
@@ -161,6 +173,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Tarefas"
+        ],
         "description": "",
         "parameters": [
           {
@@ -193,6 +208,9 @@
     },
     "/api/usuarios": {
       "get": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -201,6 +219,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Login - Register"
+        ],
         "description": "",
         "parameters": [
           {
@@ -231,6 +252,9 @@
     },
     "/api/usuarios/{id}": {
       "put": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -265,6 +289,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -286,6 +313,9 @@
     },
     "/api/login": {
       "post": {
+        "tags": [
+          "Login - Register"
+        ],
         "description": "",
         "parameters": [
           {

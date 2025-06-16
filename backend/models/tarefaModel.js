@@ -30,10 +30,4 @@ const deleteTarefa = (id) => {
     return false;
 };
 
-module.exports = {
-    getAllTarefas,
-    getTarefasByUsuario,
-    addTarefa,
-    updateTarefa,
-    deleteTarefa
-};
+module.exports = { getAllTarefas, getTarefasByUsuario, addTarefa, updateTarefa, deleteTarefa };

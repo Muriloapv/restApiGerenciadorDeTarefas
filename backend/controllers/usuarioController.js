@@ -4,6 +4,7 @@ const usuarioModel = require('../models/usuarioModel');
 const listarUsuarios = (req, res) => {
     const usuarios = usuarioModel.getAllUsuarios();
     res.json(usuarios);
+    // #swagger.tags = ['Users']
 };
 
 // POST /usuarios
@@ -11,6 +12,7 @@ const criarUsuario = (req, res) => {
     const { nome, cargo, senha } = req.body;
     const novoUsuario = usuarioModel.addUsuario({ nome, cargo, senha });
     res.status(201).json(novoUsuario);
+    // #swagger.tags = ['Login - Register']
 };
 
 // PUT /usuarios/:id
@@ -25,6 +27,7 @@ const atualizarUsuario = (req, res) => {
     } else {
         res.status(400).json({ mensagem: 'Usuário não encontrado' });
     }
+    // #swagger.tags = ['Users']
 };
 
 // DELETE /usuarios/:id
@@ -36,11 +39,7 @@ const excluirUsuario = (req, res) => {
     } else {
         res.status(404).json({ mensagem: 'Usuário não encontrado' });
     }
+    // #swagger.tags = ['Users']
 };
 
-module.exports = {
-    listarUsuarios,
-    criarUsuario,
-    atualizarUsuario,
-    excluirUsuario
-};
+module.exports = { listarUsuarios, criarUsuario, atualizarUsuario, excluirUsuario };

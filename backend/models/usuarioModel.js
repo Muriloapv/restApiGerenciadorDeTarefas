@@ -33,9 +33,4 @@ const deleteUsuario = (id) => {
     return false;
 };
 
-module.exports = {
-    getAllUsuarios,
-    addUsuario,
-    updateUsuario,
-    deleteUsuario
-};
+module.exports = { getAllUsuarios,addUsuario, updateUsuario, deleteUsuario };

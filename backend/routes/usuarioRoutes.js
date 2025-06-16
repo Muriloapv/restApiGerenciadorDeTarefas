@@ -23,6 +23,8 @@ router.post('/login', (req, res) => {
     const token = jwt.sign({ id: usuario.id, nome: usuario.nome }, 'segredo123', { expiresIn: '1h' });
 
     res.json({ token });
+    // #swagger.tags = ['Login - Register']
+
 });
 
 module.exports = router;
