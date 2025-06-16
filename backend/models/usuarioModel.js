@@ -1,9 +1,16 @@
+const bcrypt = require('bcryptjs');
 let usuarios = [];
 
 const getAllUsuarios = () => usuarios;
 
 const addUsuario = (novoUsuario) => {
-    const usuarioComId = { id: usuarios.length + 1, ...novoUsuario };
+    const hash = bcrypt.hashSync(novoUsuario.senha, 10);
+    const usuarioComId = {
+        id: usuarios.length + 1,
+        nome: novoUsuario.nome,
+        cargo: novoUsuario.cargo,
+        senha: hash
+    };
     usuarios.push(usuarioComId);
     return usuarioComId;
 };

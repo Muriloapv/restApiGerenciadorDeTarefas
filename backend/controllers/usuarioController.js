@@ -8,8 +8,8 @@ const listarUsuarios = (req, res) => {
 
 // POST /usuarios
 const criarUsuario = (req, res) => {
-    const { nome, cargo } = req.body;
-    const novoUsuario = usuarioModel.addUsuario({ nome, cargo });
+    const { nome, cargo, senha } = req.body;
+    const novoUsuario = usuarioModel.addUsuario({ nome, cargo, senha });
     res.status(201).json(novoUsuario);
 };
 
