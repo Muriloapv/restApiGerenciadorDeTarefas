@@ -1,71 +1,59 @@
-    let tarefas = [];
+const tarefaModel = require('../models/tarefaModel');
 
-    //Lista todas as tarefas - GET
-    const listarTarefas = ( req, res ) => {
-        res.json( tarefas );
-    };
+// GET /tarefas
+const listarTarefas = (req, res) => {
+    const tarefas = tarefaModel.getAllTarefas();
+    res.json(tarefas);
+};
 
-    const listarTarefasUser = ( req, res ) => {
-        const nome = req.params;
+// GET /tarefas/:usuario
+const listarTarefasUser = (req, res) => {
+    const { usuario } = req.params;
+    const tarefasUser = tarefaModel.getTarefasByUsuario(usuario);
 
-        const tarefasUser = tarefas.filter( tarefa => tarefa.usuario === nome);
-        if ( tarefasUser.length > 0 ) {
-            res.json( tarefasUser )
-        } else {
-           res.status( 400 ).json( { mensagem: 'Não a tarefas no nome desse usúario!' } ) 
-        }
+    if (tarefasUser.length > 0) {
+        res.json(tarefasUser);
+    } else {
+        res.status(400).json({ mensagem: 'Não há tarefas com esse nome de usuário!' });
     }
+};
 
-    //Cria nova tarefa - POST
-    const criarTarefa = ( req, res ) => {
-        const { titulo    } = req.body;
-        const { descricao } = req.body;
-        const { status    } = req.body;
-        const { usuario   } = req.body;
+// POST /tarefas
+const criarTarefa = (req, res) => {
+    const { titulo, descricao, status, usuario } = req.body;
+    const novaTarefa = tarefaModel.addTarefa({ titulo, descricao, status, usuario });
+    res.status(201).json(novaTarefa);
+};
 
-        const novaTarefa ={ id: tarefas.length + 1, 
-                            titulo,
-                            descricao,
-                            status,
-                            usuario
-        }; 
+// PUT /tarefas/:id
+const atualizarTarefa = (req, res) => {
+    const { id } = req.params;
+    const { titulo, descricao, status, usuario } = req.body;
 
-        tarefas.push( novaTarefa );
-        res.status( 201 ).json( novaTarefa );
-    };
+    const tarefaAtualizada = tarefaModel.updateTarefa(id, { titulo, descricao, status, usuario });
 
-    //Atualizar dados da tarefa - PUT
-    const atualizarTarefa = ( req, res ) => {
-        const { id        } = req.params;
-        const { titulo    } = req.body; 
-        const { descricao } = req.body;
-        const { status    } = req.body;
-        const { usuario   } = req.body;
+    if (tarefaAtualizada) {
+        res.json(tarefaAtualizada);
+    } else {
+        res.status(400).json({ mensagem: 'Tarefa não encontrada!' });
+    }
+};
 
-        const index = tarefas.findIndex( tarefa => tarefa.id === parseInt( id ) );
+// DELETE /tarefas/:id
+const excluirTarefa = (req, res) => {
+    const { id } = req.params;
 
-        if ( index !== -1 ){
-            tarefas[ index  ].titulo    = titulo;
-            tarefas[ index  ].descricao = descricao;
-            tarefas[ status ].status    = status;
+    if (tarefaModel.deleteTarefa(id)) {
+        res.json({ mensagem: 'Tarefa excluída com sucesso' });
+    } else {
+        res.status(404).json({ mensagem: 'Tarefa não encontrada' });
+    }
+};
 
-            res.json( tarefas[ index ] );
-        } else {
-            res.status( 400 ).json( { mensagem: 'Tarefa não encontrada!' } );// retorna erro 404 caso a tarefa não seja encontrada
-        }
-    };
-
-    //Excluir tarefa - DELETE
-    const excluirTarefa = ( req, res ) => {
-        const { id } = req.params;
-        const index = tarefas.findIndex( tarefa => tarefa.id === parseInt( id ));
-
-        if ( index !== -1 ){
-            tarefas.splice( index, 1 );
-            res.json( { mensagem:'Tarefa excluída com sucesso'} );
-        } else {
-            res.status( 404 ).json( { mensagem: 'Tarefa não encontrada'});
-        }
-    };
-
-module.exports = { listarTarefas, listarTarefasUser, criarTarefa, atualizarTarefa, excluirTarefa }
+module.exports = {
+    listarTarefas,
+    listarTarefasUser,
+    criarTarefa,
+    atualizarTarefa,
+    excluirTarefa
+};

@@ -1,12 +1,13 @@
 const express = require ( 'express' );
 const router = express.Router();
-const userController = require ( '../controllers/userController' );
+const userController = require ( '../controllers/usuarioController' );
 
 //Rotas para operações CRUD
-router.get    ( '/user'    , userController.listarUsuarios   );
-router.post   ( '/user'    , userController.criarUsuario     );
-router.put    ( '/user/:id', userController.atualizarUsuario );
-router.delete ( '/user/:id', userController.excluirUsuario   );
+router.get    ( '/usuarios'    , userController.listarUsuarios   );
+router.post   ( '/usuarios'    , userController.criarUsuario     );
+router.put    ( '/usuarios/:id', userController.atualizarUsuario );
+router.delete ( '/usuarios/:id', userController.excluirUsuario   );
 
 module.exports = router;
+
 
